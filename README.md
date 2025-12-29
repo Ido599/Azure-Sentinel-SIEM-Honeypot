@@ -18,9 +18,11 @@ SIEM It is a tool that collects event log data from a range of sources within a 
 ### Tools Used
 [Bullet Points - Remove this afterwards]
 
-- Azure Sentinel.
-- Network analysis tools (such as Wireshark) for capturing and examining network traffic.
-- Telemetry generation tools to create realistic network traffic and attack scenarios.
+- Azure Sentinel.Deployed for cloud-native security information and event management, log ingestion, and threat monitoring.
+- Log Analytics Workspaces: Configured to aggregate and store security logs from multiple data sources.
+- Remote Desktop Protocol (RDP). Examined Remote Desktop Protocol (RDP) traffic patterns and used network monitoring techniques to identify brute-force attempts.
+- geoip-summarized file -Integrated IP-to-Geolocation (geoip-summarized) data to map and visualize attack origins.
+- KQL (Kusto Query Language): Utilized for advanced log querying, data parsing, and analyzing security events.
 
 ## Steps
 drag & drop screenshots here or use imgur and reference them using imgsrc
