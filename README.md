@@ -25,10 +25,7 @@ SIEM It is a tool that collects event log data from a range of sources within a 
 - KQL (Kusto Query Language): Utilized for advanced log querying, data parsing, and analyzing security events.
 
 ## Steps
-drag & drop screenshots here or use imgur and reference them using imgsrc
 
-Every screenshot should have some text explaining what the screenshot is about.
+Architecture:
 
-Example below.
-
-*Ref 1: Network Diagram*
+<img width="1408" height="716" alt="PUBLIC INTERNET" src="https://github.com/user-attachments/assets/65d2c071-b24a-44f9-94ae-ad09eef31ed1" />
