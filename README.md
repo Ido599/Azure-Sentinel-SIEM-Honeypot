@@ -24,8 +24,11 @@ SIEM It is a tool that collects event log data from a range of sources within a 
 - geoip-summarized file -Integrated IP-to-Geolocation (geoip-summarized) data to map and visualize attack origins.
 - KQL (Kusto Query Language): Utilized for advanced log querying, data parsing, and analyzing security events.
 
-## Steps
 
-Architecture:
+## Architecture:
 
 <img width="1408" height="716" alt="PUBLIC INTERNET" src="https://github.com/user-attachments/assets/65d2c071-b24a-44f9-94ae-ad09eef31ed1" />
+
+## Steps
+
+
