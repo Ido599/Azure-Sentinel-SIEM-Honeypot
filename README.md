@@ -31,4 +31,22 @@ SIEM It is a tool that collects event log data from a range of sources within a 
 
 ## Steps
 
+Step 1: Create a Honeypot Virtual Machine
+
+Exposed Windows VM:
+<img width="1387" height="662" alt="image" src="https://github.com/user-attachments/assets/3dbb3f48-f0e8-4301-a188-cee5a6976861" />
+
+- Go to portal.azure.com  
+- Search for "virtual machines"  
+- Create > Azure virtual machine
+
+**Instance details**
+
+- Name your VM (honeypot-vm)  
+- Select a recommended region ((US) East US 2)  
+- Availability options: No infrastructure redundancy required  
+- Security type: Standard  
+- Image: Windows 10 Pro, version 21H2 - x62 Gen2  
+- VM Architecture: x64  
+- Size: Default is okay (Standard_D2s_v3 - 2vcpus, 8 GiB memory)
 
