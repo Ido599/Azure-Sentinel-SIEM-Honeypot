@@ -29,9 +29,7 @@ SIEM It is a tool that collects event log data from a range of sources within a 
 
 <img width="1408" height="716" alt="PUBLIC INTERNET" src="https://github.com/user-attachments/assets/65d2c071-b24a-44f9-94ae-ad09eef31ed1" />
 
-## Steps
-
-Step 1: Create a Honeypot Virtual Machine
+## Step 1: Create a Honeypot Virtual Machine
 
 Exposed Windows VM:
 <img width="1387" height="662" alt="image" src="https://github.com/user-attachments/assets/3dbb3f48-f0e8-4301-a188-cee5a6976861" />
@@ -87,10 +85,40 @@ traffic flow and intentionally expose the VM to the public internet for attack c
 
 <img width="1607" height="362" alt="image" src="https://github.com/user-attachments/assets/785ef61c-4c22-4a4b-82fe-22cd91d8b309" />
 <img width="1616" height="666" alt="image" src="https://github.com/user-attachments/assets/23724082-efed-4c07-9879-d4eeaf6e0683" />
+In that way we ensures that once the Azure Network Security Group (NSG) allows the traffic, the guest OS does not drop the incoming packets, allowing the SIEM to capture the full scope of the attack.
 
-
+## Step 2: Disable the Firewall in Virtual Machine
 Configuring the internal Windows Defender Firewall was disabled across all profiles (Domain, Private, and Public)
 <img width="1097" height="395" alt="image" src="https://github.com/user-attachments/assets/b6a5230a-50e1-46aa-ba10-651650e67074" />
 
-In that way we ensures that once the Azure Network Security Group (NSG) allows the traffic, the guest OS does not drop the incoming packets, allowing the SIEM to capture the full scope of the attack.
+- Go to Virtual Machines and find the honeypot VM 
+- By clicking on the VM copy the IP address
+- Log into the VM via Remote Desktop Protocol (RDP) w
+- Accept Certificate warning
+- Select NO for all Choose privacy settings for your device
+- Click Start and search for "wf.msc" (Windows Defender Firewall)
+- Click "Windows Defender Firewall Properties"
+- Turn Firewall State OFF for Domain Profile Private Profile and Public Profile- 
+- Hit Apply and Ok
+- Ping VM via Host's command line to make sure it is reachable
+
+## Step 3: Create a Log Analytics Workspace
+- Search for "Log analytics workspaces"
+- Select Create Log Analytics workspace
+- Put it in the same resource group as VM 
+- Give it a desired name 
+- Add to same region (East US 2)
+- Select Review + create
+
+<img width="740" height="665" alt="image" src="https://github.com/user-attachments/assets/36dcb5e4-9fda-4992-baa6-0aeff8a71a4a" />
+
+## Step 4:  Connect Log Analytics Workspace to Virtual Machine
+- Search for "Microsoft Sentinel"
+- Select the specific Log Analytics Workspace created for this project (e.g., Law-Soc-Lab-001)
+- On the left-hand sidebar, scroll down to the Content management section and click on Content hub.
+<img width="1403" height="541" alt="image" src="https://github.com/user-attachments/assets/2ff2faf3-59d7-4230-b9d9-6f89c4b6876e" />
+
+ Than you will search for and install the "Windows Security Events" connector to bridge the gap between your VM and the SIEM.
+  <img width="895" height="622" alt="image" src="https://github.com/user-attachments/assets/60a73973-2b55-45c4-bf1c-b822a0efc2ab" />
+  <img width="1320" height="676" alt="image" src="https://github.com/user-attachments/assets/a418eaf2-5ff6-4f80-bace-28499a7ed3eb" />
 
