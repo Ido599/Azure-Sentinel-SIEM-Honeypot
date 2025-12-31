@@ -160,10 +160,17 @@ SecurityEvent
 - Click Advanced Editor
 - Copy/Paste the following query into the query window and Run Query
 ```kusto
-   let GeoIPDB_FULL = _GetWatchlist("Geoip");
+let GeoIPDB_FULL = _GetWatchlist("Geoip");
 SecurityEvent
 | where EventID == 4625
 | evaluate ipv4_lookup(GeoIPDB_FULL, IpAddress, SearchKey)
 | summarize FailureCount = count() by IpAddress, latitude, longitude, cityname, countryname
-| project FailureCount, AttackerIp = IpAddress, latitude, longitude, city = cityname, country = countryname, friendly_location = strcat(cityname, " (", countryname, ")")
+| project FailureCount,
+          AttackerIp = IpAddress,
+          latitude,
+          longitude,
+          city = cityname,
+          country = countryname,
+          friendly_location = strcat(cityname, " (", countryname, ")")
 ```
+
