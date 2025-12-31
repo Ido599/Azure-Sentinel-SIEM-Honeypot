@@ -159,22 +159,13 @@ SecurityEvent
 - Click Add > Add data source + visualization
 - Click Advanced Editor
 - Copy/Paste the following query into the query window and Run Query
-```kusto
 let GeoIPDB_FULL = _GetWatchlist("Geoip");
-
 SecurityEvent
 | where EventID == 4625
 | evaluate ipv4_lookup(GeoIPDB_FULL, IpAddress, SearchKey)
-| summarize FailureCount = count() 
-    by IpAddress, latitude, longitude, cityname, countryname
-| project 
-    FailureCount,
-    AttackerIp = IpAddress,
-    latitude,
-    longitude,
-    city = cityname,
-    country = countryname,
-    friendly_location = strcat(cityname, " (", countryname, ")")
-```
+| summarize FailureCount = count() by IpAddress, latitude, longitude, cityname, countryname
+| project FailureCount, AttackerIp = IpAddress, latitude, longitude, city = cityname, country = countryname, friendly_location = strcat(cityname, " (", countryname, ")")
 
-
+- Click on Done Editing
+- click Save
+<img width="300" height="258" alt="image" src="https://github.com/user-attachments/assets/6c095e0d-f815-485f-810f-537b5f3510da" />
