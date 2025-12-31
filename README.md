@@ -153,3 +153,6 @@ SecurityEvent
 - Go to Microsoft Sentinel to see the Overview page and available events.
 - lick on Workbooks and go to Defender Portal.
   <img width="1347" height="635" alt="image" src="https://github.com/user-attachments/assets/8c92e6a4-a86d-40bf-9769-5993b9beb4e0" />
+- Add workbook then click Edit
+- Remove default Workbook (New Workbook)
+<img width="1565" height="535" alt="image" src="https://github.com/user-attachments/assets/5e0c42b1-c581-4c47-b27f-22871f5631da" />
