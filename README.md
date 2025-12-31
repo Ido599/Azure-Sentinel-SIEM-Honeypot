@@ -154,5 +154,16 @@ SecurityEvent
 - lick on Workbooks and go to Defender Portal.
   <img width="1347" height="635" alt="image" src="https://github.com/user-attachments/assets/8c92e6a4-a86d-40bf-9769-5993b9beb4e0" />
 - Add workbook then click Edit
-- Remove default Workbook (New Workbook)
+- Remove default Workbook 
 <img width="1565" height="535" alt="image" src="https://github.com/user-attachments/assets/5e0c42b1-c581-4c47-b27f-22871f5631da" />
+- Click Add > Add data source + visualization
+- Click Advanced Editor
+- Copy/Paste the following query into the query window and Run Query
+```kusto
+   let GeoIPDB_FULL = _GetWatchlist("Geoip");
+SecurityEvent
+| where EventID == 4625
+| evaluate ipv4_lookup(GeoIPDB_FULL, IpAddress, SearchKey)
+| summarize FailureCount = count() by IpAddress, latitude, longitude, cityname, countryname
+| project FailureCount, AttackerIp = IpAddress, latitude, longitude, city = cityname, country = countryname, friendly_location = strcat(cityname, " (", countryname, ")")
+```
