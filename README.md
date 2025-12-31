@@ -122,5 +122,34 @@ Configuring the internal Windows Defender Firewall was disabled across all profi
   <img width="895" height="622" alt="image" src="https://github.com/user-attachments/assets/60a73973-2b55-45c4-bf1c-b822a0efc2ab" />
   <img width="1320" height="676" alt="image" src="https://github.com/user-attachments/assets/a418eaf2-5ff6-4f80-bace-28499a7ed3eb" />
 
-## Step 5:
-<img width="1915" height="765" alt="image" src="https://github.com/user-attachments/assets/0c1b6661-ac39-4585-b225-7415ec7dacea" />
+## Step 5:Log Enrichment and Finding Location Data
+import a spreadsheet (as a “Sentinel Watchlist”) which contains geographic information for each block of IP addresses.
+Download: geoip-summarized.csv https://raw.githubusercontent.com/joshmadakor1/lognpacific-public/refs/heads/main/misc/geoip-summarized.csv 
+
+- Open Microsoft Sentinel: Navigate to your designated Sentinel workspace.
+- Configuration Menu: On the left-hand sidebar, locate the Configuration section.
+- Select Watchlist: Click on the Watchlist tab.
+- Create New: Click on + New (or Add new) at the top to launch the Watchlist wizard.
+- Source Upload:
+   - Set Source type to "Local file".
+   - Set File type to "CSV file with a header (.csv)".
+   = Upload: Drag and drop the geoip-summarized.csv file into the upload box.
+   - SearchKey: Set the SearchKey to network to allow the SIEM to correlate IP ranges with geographical coordinates.
+-Review + Create 
+<img width="1542" height="727" alt="image" src="https://github.com/user-attachments/assets/89d83934-24d7-4ecf-913e-ea8a44e6ca79" />
+<img width="1076" height="672" alt="image" src="https://github.com/user-attachments/assets/dc779152-f3e4-409d-9338-10e5e4c31e91" />
+
+Observe the logs now have geographic information, so you can see where the attacks are coming from
+By uploading the geoip-summarized.csv via the Watchlist wizard, we essentially create lookup table within Log Analytics (our log repository).
+
+let GeoIPDB_FULL = _GetWatchlist("Geoip");
+SecurityEvent
+| where EventID == 4625
+| evaluate ipv4_lookup(GeoIPDB_FULL, IpAddress, SearchKey)
+| summarize FailureCount = count() by IpAddress, latitude, longitude, cityname, countryname
+| project FailureCount, AttackerIp = IpAddress, latitude, longitude, city = cityname, country = countryname, friendly_location = strcat(cityname, " (", countryname, ")")
+
+## Step 6:Map Data in Microsoft Sentinel
+- Go to Microsoft Sentinel to see the Overview page and available events.
+- lick on Workbooks and go to Defender Portal.
+  <img width="1347" height="635" alt="image" src="https://github.com/user-attachments/assets/8c92e6a4-a86d-40bf-9769-5993b9beb4e0" />
