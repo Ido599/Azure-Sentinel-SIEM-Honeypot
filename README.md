@@ -143,11 +143,13 @@ Observe the logs now have geographic information, so you can see where the attac
 By uploading the geoip-summarized.csv via the Watchlist wizard, we essentially create lookup table within Log Analytics (our log repository).
 
 let GeoIPDB_FULL = _GetWatchlist("Geoip");
-SecurityEvent
+let WindowsEvents = SecurityEvent
+| where IpAddress == "<Attacker ip>"
 | where EventID == 4625
-| evaluate ipv4_lookup(GeoIPDB_FULL, IpAddress, SearchKey)
-| summarize FailureCount = count() by IpAddress, latitude, longitude, cityname, countryname
-| project FailureCount, AttackerIp = IpAddress, latitude, longitude, city = cityname, country = countryname, friendly_location = strcat(cityname, " (", countryname, ")")
+| order by TimeGenerated desc
+| evaluate ipv4_lookup(GeoIPDB_FULL, IpAddress, network);
+WindowsEvents
+<img width="1602" height="648" alt="image" src="https://github.com/user-attachments/assets/1d1aa829-5bce-4802-9408-c21735b87e4a" />
 
 ## Step 6:Map Data in Microsoft Sentinel
 - Go to Microsoft Sentinel to see the Overview page and available events.
@@ -169,3 +171,9 @@ SecurityEvent
 - Click on Done Editing
 - click Save
 <img width="300" height="258" alt="image" src="https://github.com/user-attachments/assets/6c095e0d-f815-485f-810f-537b5f3510da" />
+Once results come up click the Visualization dropdown menu and select Map
+Select Map Settings for additional configuration
+<img width="1607" height="497" alt="image" src="https://github.com/user-attachments/assets/01b45ee7-7e6e-4bee-8d73-49d7dc13d2d7" />
+<img width="407" height="676" alt="image" src="https://github.com/user-attachments/assets/a75b3686-c780-4f5d-a781-0feaafe3c6d0" />
+- Select Apply button and Save and Close
+<img width="677" height="523" alt="MAPATAACK" src="https://github.com/user-attachments/assets/584dd9d7-0929-4036-8407-38b39080f552" />
