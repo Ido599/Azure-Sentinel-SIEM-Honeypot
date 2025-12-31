@@ -122,3 +122,5 @@ Configuring the internal Windows Defender Firewall was disabled across all profi
   <img width="895" height="622" alt="image" src="https://github.com/user-attachments/assets/60a73973-2b55-45c4-bf1c-b822a0efc2ab" />
   <img width="1320" height="676" alt="image" src="https://github.com/user-attachments/assets/a418eaf2-5ff6-4f80-bace-28499a7ed3eb" />
 
+## Step 5:
+<img width="1915" height="765" alt="image" src="https://github.com/user-attachments/assets/0c1b6661-ac39-4585-b225-7415ec7dacea" />
