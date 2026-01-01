@@ -2,12 +2,12 @@
 
 
 ## Objective
-[Brief Objective - Remove this afterwards]
+
 
 SIEM It is a tool that collects event log data from a range of sources within a network such as Firewalls, IDS/IPS, Identity solutions, etc. This allows the security professionals to monitor, prioritize and remediate potential threats in real-time. A honeypot is a security mechanism that creates a virtual trap in a controlled and safe environment to lure attackers. An intentionally compromised computer system to study how attackers work, examine different types of threats and improve security policies. This lab's purpose is to understand how to collect honeypot attack log data, query it in a SIEM and display it in a manner that is easy to understand such data. In this case it will be displayed in a world map by event count and geolocation.
 
 ### Skills Learned
-[Bullet Points - Remove this afterwards]
+
 
 - Hands-on experience and working knowledge of a SIEM Log Management Tool (Microsoft's Azure Sentinel).
 - Configuration & Deployment of Azure resources such as virtual machines, Log Analytics Workspaces, and Azure Sentinel.
@@ -16,7 +16,6 @@ SIEM It is a tool that collects event log data from a range of sources within a 
 - Utilization of KQL to query logs.
 
 ### Tools Used
-[Bullet Points - Remove this afterwards]
 
 - Azure Sentinel.Deployed for cloud-native security information and event management, log ingestion, and threat monitoring.
 - Log Analytics Workspaces: Configured to aggregate and store security logs from multiple data sources.
@@ -151,7 +150,7 @@ let WindowsEvents = SecurityEvent
 WindowsEvents
 <img width="1602" height="648" alt="image" src="https://github.com/user-attachments/assets/1d1aa829-5bce-4802-9408-c21735b87e4a" />
 
-## Step 6:Map Data in Microsoft Sentinel
+## Step 6:Creating The Attack Map
 - Go to Microsoft Sentinel to see the Overview page and available events.
 - lick on Workbooks and go to Defender Portal.
   <img width="1347" height="635" alt="image" src="https://github.com/user-attachments/assets/8c92e6a4-a86d-40bf-9769-5993b9beb4e0" />
