@@ -1,4 +1,4 @@
-# Azure-Sentinel-SIEM-Honeypot
+# Azure Sentinel SIEM Honeypot
 
 
 ## Objective
